@@ -1,6 +1,7 @@
 
 import BackGround from './game/background'
-
+import MainView from './game/MainView'
+import Model from './game/model'
 var context = canvas.getContext('2d');
 
 export default class Main {
@@ -17,11 +18,14 @@ export default class Main {
       canvas
     )
 
+    this.model = new Model()
+
     this.bg = new BackGround(context)
+    this.mainView = new MainView(context);
   }
 
   /**
-   * 循环
+   * 帧循环
    */
   loop() {
     //console.log('loop')
@@ -46,7 +50,9 @@ export default class Main {
    */
   render() 
   {
-    
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    this.bg.render();
+    this.mainView.render();
   }
 }
 

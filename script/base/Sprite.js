@@ -2,12 +2,10 @@
  * 游戏基础的精灵类
  */
 export default class Sprite {
-  constructor(imgSrc = '', width = 0, height = 0, x = 0, y = 0,drawContext = null) {
+  constructor(imgSrc = '', width = 0, height = 0, x = 0, y = 0) {
+    
     this.img = new Image()
-    this.img.onload = function () {
-      drawToCanvas(drawContext);
-      this.img.onload = null;
-    }
+    
     this.img.src = imgSrc
 
     this.width = width
@@ -52,5 +50,11 @@ export default class Sprite {
       && spX <= this.x + this.width
       && spY >= this.y
       && spY <= this.y + this.height)
+  }
+
+  changeImage(src)
+  {
+    this.img = new Image()
+    this.img.src = src;
   }
 }
