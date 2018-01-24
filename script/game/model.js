@@ -46,7 +46,7 @@ export default class Model {
     for (var i = 0; i < this.column; i++) {
       this.cells[i] = new Array();
       for (var j = 0; j < this.row; j++) {
-        var random = Math.floor(Math.random() * 4);
+        var random = Math.floor(Math.random() * 5);
         this.cells[i][j] = new Cell(i, j, random);
       }
     }

@@ -24,6 +24,11 @@ export default class Main {
     this.bg = new BackGround(context)
     this.mainView = new MainView(context);
 
+    canvas.removeEventListener(
+      'touchstart',
+      this.touchHandler
+    )
+
     this.touchHandler = this.touchEventHandler.bind(this)
     canvas.addEventListener('touchstart', this.touchHandler)
   }
@@ -34,7 +39,6 @@ export default class Main {
     let y = e.touches[0].clientY * this.model.scale;
     
     let area = this.model.resetBtnArea
-    console.log("click x " + x + " startX " + area.startX + " endX " + area.endX + " y " + y + " startY " + area.startY + " endX " + area.endY);
     if (x >= area.startX && x <= (area.startX + area.endX) && y >= area.startY && y <= (area.startY + area.endY))
     {
       this.restart()

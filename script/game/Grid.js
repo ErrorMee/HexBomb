@@ -18,7 +18,7 @@ export default class Grid {
     for (var i = 0; i < this.column; i++) {
       this.cells[i] = new Array();
       for (var j = 0; j < this.row; j++) {
-        var random = Math.floor(Math.random() * 3);
+        var random = Math.floor(Math.random() * 5);
         this.cells[i][j] = new Cell(i, j, random);
       }
     }

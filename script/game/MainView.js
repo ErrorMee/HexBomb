@@ -9,7 +9,7 @@ atlas.src = 'images/Common.png'
 export default class MainView {
   constructor(ctx) {
     this.ctx = ctx;
-    this.grid = new Grid(4, 4)
+    this.grid = new Grid(8, 8)
   }
 
   render() {

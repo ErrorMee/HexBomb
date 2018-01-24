@@ -5,9 +5,11 @@
 import Sprite from '../base/Sprite'
 import Model from './model'
 
-const CELL_IMG_0 = 'asset/image/cell01.png'
-const CELL_IMG_1 = 'asset/image/cell02.png'
-const CELL_IMG_2 = 'asset/image/cell03.png'
+const CELL_IMG_0 = 'asset/image/cell00.png'
+const CELL_IMG_1 = 'asset/image/cell01.png'
+const CELL_IMG_2 = 'asset/image/cell02.png'
+const CELL_IMG_3 = 'asset/image/cell03.png'
+const CELL_IMG_4 = 'asset/image/cell04.png'
 
 let model = new Model();
 var cellSize = model.getScaleCellSize();
@@ -46,6 +48,14 @@ export default class Cell extends Sprite {
 
     if (this.celltype == 2) {
       this.changeImage(CELL_IMG_2)
+    }
+
+    if (this.celltype == 3) {
+      this.changeImage(CELL_IMG_3)
+    }
+
+    if (this.celltype == 4) {
+      this.changeImage(CELL_IMG_4)
     }
   }
 
