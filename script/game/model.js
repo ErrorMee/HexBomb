@@ -1,6 +1,7 @@
 let instance
 
 const REFER_CANVAS_WIDTH = 320
+const REFER_CANVAS_HEIGHT = 568
 /**
  * 数据
  */
@@ -12,13 +13,21 @@ export default class Model {
     }
 
     instance = this
-
+    this.REFER_CANVAS_WIDTH = 320
+    this.REFER_CANVAS_HEIGHT = 568
     this.screenWidth = window.innerWidth
     this.screenHeight = window.innerHeight
-    this.scale = this.screenWidth / REFER_CANVAS_WIDTH;
+    this.scale = this.screenWidth / this.REFER_CANVAS_WIDTH;
     console.log("scale " + this.scale)
     this.REFER_CELL_SIZE = 32
     this.REFER_CELL_GAP = 2
+
+    this.resetBtnArea = {
+      startX: (this.REFER_CANVAS_WIDTH / 2 - 40) * this.scale,
+      startY: (this.REFER_CANVAS_HEIGHT - 50) * this.scale,
+      endX: (80) * this.scale,
+      endY: (40) * this.scale
+    }
   }
 
   getScaleCellSize()

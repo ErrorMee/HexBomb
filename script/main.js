@@ -13,6 +13,7 @@ export default class Main {
   }
 
   restart() {
+    console.log("restart ");
     window.requestAnimationFrame(
       this.loop.bind(this),
       canvas
@@ -22,6 +23,23 @@ export default class Main {
 
     this.bg = new BackGround(context)
     this.mainView = new MainView(context);
+
+    this.touchHandler = this.touchEventHandler.bind(this)
+    canvas.addEventListener('touchstart', this.touchHandler)
+  }
+
+  touchEventHandler(e) {
+    e.preventDefault()
+    let x = e.touches[0].clientX * this.model.scale;
+    let y = e.touches[0].clientY * this.model.scale;
+    
+    let area = this.model.resetBtnArea
+    console.log("click x " + x + " startX " + area.startX + " endX " + area.endX + " y " + y + " startY " + area.startY + " endX " + area.endY);
+    if (x >= area.startX && x <= (area.startX + area.endX) && y >= area.startY && y <= (area.startY + area.endY))
+    {
+      this.restart()
+    }
+      
   }
 
   /**
