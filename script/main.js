@@ -35,10 +35,11 @@ export default class Main {
 
   touchEventHandler(e) {
     e.preventDefault()
-    let x = e.touches[0].clientX * this.model.scale;
-    let y = e.touches[0].clientY * this.model.scale;
+    let x = e.touches[0].clientX;
+    let y = e.touches[0].clientY;
     
     let area = this.model.resetBtnArea
+    console.log("touch x " + x + " startX " + area.startX + " endX " + (area.startX + area.endX));
     if (x >= area.startX && x <= (area.startX + area.endX) && y >= area.startY && y <= (area.startY + area.endY))
     {
       this.restart()
