@@ -9,7 +9,7 @@ atlas.src = 'images/Common.png'
 export default class MainView {
   constructor(ctx) {
     this.ctx = ctx;
-    this.grid = new Grid(8, 8)
+    this.grid = new Grid(9, 12)
   }
 
   render() {
@@ -20,10 +20,7 @@ export default class MainView {
 
   renderUI(ctx)
   {
-    ctx.fillStyle = "#ffffff"
-    ctx.font = "20px Arial"
     
-
     ctx.drawImage(
       atlas,
       120, 6, 39, 24,
@@ -33,11 +30,13 @@ export default class MainView {
       model.resetBtnArea.endY,
     )
 
-    //ctx.setTextAlign('center')
+    ctx.fillStyle = "#ffffff"
+    ctx.font = "20px Arial"
     ctx.fillText(
       '重 置',
       (model.REFER_CANVAS_WIDTH / 2) * model.scale - 24,
       (model.REFER_CANVAS_HEIGHT - 25) * model.scale
     )
+    
   }
 }

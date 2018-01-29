@@ -2,14 +2,24 @@
 import BackGround from './game/background'
 import MainView from './game/MainView'
 import Model from './game/model'
+import GridModel from './game/GridModel'
+
 var context = canvas.getContext('2d');
+
+let gridModel = new GridModel();
 
 export default class Main {
   /**
    * 构造方法
    */
   constructor() {
+    this.init();
     this.restart()
+  }
+
+  init()
+  {
+    this.bg = new BackGround(context)
   }
 
   restart() {
@@ -20,8 +30,6 @@ export default class Main {
     )
 
     this.model = new Model()
-
-    this.bg = new BackGround(context)
     this.mainView = new MainView(context);
 
     canvas.removeEventListener(
@@ -39,10 +47,13 @@ export default class Main {
     let y = e.touches[0].clientY;
     
     let area = this.model.resetBtnArea
-    console.log("touch x " + x + " startX " + area.startX + " endX " + (area.startX + area.endX));
+    console.log("touch x " + x + " y " + y);
     if (x >= area.startX && x <= (area.startX + area.endX) && y >= area.startY && y <= (area.startY + area.endY))
     {
       this.restart()
+    }else
+    {
+      gridModel.touchGrid(x, y);
     }
       
   }

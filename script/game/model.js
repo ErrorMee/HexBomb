@@ -1,3 +1,4 @@
+
 let instance
 
 const REFER_CANVAS_WIDTH = 320
@@ -20,7 +21,7 @@ export default class Model {
     this.scale = this.screenWidth / this.REFER_CANVAS_WIDTH;
     console.log("scale " + this.scale)
     this.REFER_CELL_SIZE = 32
-    this.REFER_CELL_GAP = 2
+    this.REFER_CELL_GAP = 1
 
     this.resetBtnArea = {
       startX: (this.REFER_CANVAS_WIDTH / 2 - 40) * this.scale,
@@ -41,14 +42,12 @@ export default class Model {
     this.OFFY = (this.screenHeight - ((this.REFER_CELL_GAP + this.REFER_CELL_SIZE) * row + this.REFER_CELL_GAP) * this.scale) / 2;
   }
 
-  cellGenerate() {
-    this.cells = new Array();
-    for (var i = 0; i < this.column; i++) {
-      this.cells[i] = new Array();
-      for (var j = 0; j < this.row; j++) {
-        var random = Math.floor(Math.random() * 5);
-        this.cells[i][j] = new Cell(i, j, random);
-      }
-    }
+  getCellViewPosX(posx) {
+    return ((this.REFER_CELL_GAP + this.REFER_CELL_SIZE) * posx + this.REFER_CELL_GAP) * this.scale + this.OFFX;
   }
+
+  getCellViewPosY(posy) {
+    return ((this.REFER_CELL_GAP + this.REFER_CELL_SIZE) * posy + this.REFER_CELL_GAP) * this.scale + this.OFFY;
+  }
+
 }
