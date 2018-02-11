@@ -48,13 +48,20 @@ export default class Main {
     
     let area = this.model.resetBtnArea
     console.log("touch x " + x + " y " + y);
-    if (x >= area.startX && x <= (area.startX + area.endX) && y >= area.startY && y <= (area.startY + area.endY))
+    if (y >= area.startY && y <= (area.startY + area.endY))
     {
-      this.restart()
-    }else
+      if (x >= area.startX && x <= (area.startX + area.endX)) {
+        this.restart()
+      } else if (x >= area.startX - (100) * this.model.scale && x <= (area.startX - (100) * this.model.scale + area.endX))
+      {
+        gridModel.switchMode();
+      }
+    }
+    else
     {
       gridModel.touchGrid(x, y);
     }
+
       
   }
 

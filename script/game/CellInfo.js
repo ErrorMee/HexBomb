@@ -12,10 +12,14 @@ export default class CellInfo
     this.value = 0;/**-1为雷 0-n为空地*/
   }
 
-
   Open() {
     if (this.isOpen == false) {
       this.isOpen = true;
+      if (this.value == -1)
+      {
+        return true
+      }
     }
+    return false;
   }
 }

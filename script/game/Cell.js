@@ -4,12 +4,14 @@
 
 import Sprite from '../base/Sprite'
 import Model from './model'
+import GridModel from './GridModel'
 
 const CELL_OPEN = 'asset/image/cell01.png'
 const CELL_CLOSE = 'asset/image/cell00.png'
 
 let model = new Model();
 var cellSize = model.getScaleCellSize();
+let gridModel = new GridModel();
 
 export default class Cell extends Sprite {
   constructor(cellInfo) {
@@ -58,6 +60,31 @@ export default class Cell extends Sprite {
         this.x + (model.REFER_CELL_SIZE - 8) / 2 * model.scale,
         this.y + (model.REFER_CELL_SIZE + 14) / 2 * model.scale,
       )
+    }else
+    {
+      if (gridModel.mode)
+      {
+        ctx.fillStyle = "#555555";
+        ctx.font = "20px Arial";
+        var text = this.cellInfo.isMark ? "▲" : "∆";
+        ctx.fillText(
+          text,
+          this.x + (model.REFER_CELL_SIZE - (this.cellInfo.isMark ? 16 : 10)) / 2 * model.scale,
+          this.y + (model.REFER_CELL_SIZE + 14) / 2 * model.scale,
+        )
+      }else
+      {
+        if (this.cellInfo.isMark) {
+          ctx.fillStyle = "#555555";
+          ctx.font = "20px Arial";
+          var text = "▲";
+          ctx.fillText(
+            text,
+            this.x + (model.REFER_CELL_SIZE - 16) / 2 * model.scale,
+            this.y + (model.REFER_CELL_SIZE + 14) / 2 * model.scale,
+          )
+        }
+      }
     }
     
   }

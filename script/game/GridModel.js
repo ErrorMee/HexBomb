@@ -15,6 +15,7 @@ export default class GridModel {
   }
 
   init(column, row) {
+    this.mode = false;
     this.cells = new Array();
     this.column = column;
     this.row = row;
@@ -112,12 +113,39 @@ export default class GridModel {
     return this.cells[neighborX][neighborY];
   }
 
+  switchMode()
+  {
+    this.mode = !this.mode;
+  }
+
   touchGrid(touchX, touchY)
   {
     var touchCell = this.getCellByTouch(touchX, touchY);
     if (touchCell != null)
     {
-      touchCell.Open();
+      if (this.mode)
+      {
+        if (touchCell.isOpen == false)
+        {
+          touchCell.isMark = !touchCell.isMark;
+        }
+      }else
+      {
+        if (touchCell.isMark)
+        {
+          return;
+        }
+        var findBomb = touchCell.Open();
+        if (findBomb) {
+          for (var i = 0; i < this.column; i++) {
+
+            for (var j = 0; j < this.row; j++) {
+              var cellInfo = this.cells[i][j];
+              cellInfo.isOpen = true;
+            }
+          }
+        }
+      }
     }
   }
 
